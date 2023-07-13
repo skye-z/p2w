@@ -17,7 +17,7 @@ import (
 // 没有任何子命令时调用的基本命令
 var rootCmd = &cobra.Command{
 	Use:     "p2w",
-	Short:   "Convert web page to PDF or image",
+	Short:   "Convert web page to pdf or image",
 	Version: global.Version,
 	Run: func(cmd *cobra.Command, args []string) {
 		fmt.Println("I don't know what I can do? Please use -h to view help :)")

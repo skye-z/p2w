@@ -25,7 +25,7 @@ type ImageConfig struct {
 	send    string
 }
 
-var conf = new(ImageConfig)
+var imgConf = new(ImageConfig)
 
 // imageCmd represents the image command
 var imageCmd = &cobra.Command{
@@ -35,26 +35,26 @@ var imageCmd = &cobra.Command{
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Println("Start conversion -> image")
 		var cache []byte
-		if conf.element != "" {
-			cache = service.ToElementImage(conf.url, conf.element)
+		if imgConf.element != "" {
+			cache = service.ToElementImage(imgConf.url, imgConf.element)
 		} else {
-			cache = service.ToFullImage(conf.url, conf.quality)
+			cache = service.ToFullImage(imgConf.url, imgConf.quality)
 		}
 
 		var code string
-		if conf.code == "" {
+		if imgConf.code == "" {
 			code = fmt.Sprint(time.Now().Unix())
 		} else {
-			code = conf.code
+			code = imgConf.code
 		}
 		log.Println("Conversion completed ->", code)
 
-		if conf.send != "" {
-			log.Println("Start sending ->", conf.send)
+		if imgConf.send != "" {
+			log.Println("Start sending ->", imgConf.send)
 			// http post send
 			log.Println("Image sent successfully")
 		} else {
-			log.Println("Start saving ->", conf.path+"/"+code+".png")
+			log.Println("Start saving ->", imgConf.path+"/"+code+".png")
 			if err := os.WriteFile(code+".png", cache, 0o644); err != nil {
 				log.Fatalln("Image saving failed:", err)
 			} else {
@@ -66,11 +66,11 @@ var imageCmd = &cobra.Command{
 
 func init() {
 	rootCmd.AddCommand(imageCmd)
-	imageCmd.Flags().StringVarP(&conf.url, "url", "u", "", "Web page address to be converted")
-	imageCmd.Flags().StringVarP(&conf.element, "element", "e", "", "Dom element to be converted")
-	imageCmd.Flags().IntVarP(&conf.quality, "quality", "q", 90, "Image quality")
-	imageCmd.Flags().StringVarP(&conf.path, "path", "p", "./", "Save path of converted image")
-	imageCmd.Flags().StringVarP(&conf.code, "code", "c", "", "Code identifying this conversion")
-	imageCmd.Flags().StringVarP(&conf.send, "send", "s", "", "Address to receive converted image")
+	imageCmd.Flags().StringVarP(&imgConf.url, "url", "u", "", "Web page address to be converted")
+	imageCmd.Flags().StringVarP(&imgConf.element, "element", "e", "", "Dom element to be converted")
+	imageCmd.Flags().IntVarP(&imgConf.quality, "quality", "q", 90, "Image quality")
+	imageCmd.Flags().StringVarP(&imgConf.path, "path", "p", "./", "Save path of converted image")
+	imageCmd.Flags().StringVarP(&imgConf.code, "code", "c", "", "Code identifying this conversion")
+	imageCmd.Flags().StringVarP(&imgConf.send, "send", "s", "", "Address to receive converted image")
 	imageCmd.MarkFlagRequired("url")
 }
