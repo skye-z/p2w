@@ -1,5 +1,5 @@
 /*
-子命令 - 转PDF
+子命令 - 转图片
 
 BetaX Page to what
 Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>

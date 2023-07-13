@@ -54,12 +54,8 @@ func GetInt32(key string) int32 {
 }
 
 func createDefault() {
-	// 服务是否启用
-	viper.SetDefault("service.enable", "true")
-	// 服务进程号
-	viper.SetDefault("service.pid", "0")
 	// 服务端口号
-	viper.SetDefault("service.port", "12800")
+	viper.SetDefault("server.port", "12800")
 	// 令牌密钥
 	secret, err := generateSecret()
 	if err != nil {
