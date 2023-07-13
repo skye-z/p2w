@@ -1,3 +1,10 @@
+/*
+Chrome控制服务
+
+BetaX Page To What
+Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>
+*/
+
 package service
 
 import (

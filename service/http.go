@@ -1,3 +1,10 @@
+/*
+HTTP接口服务
+
+BetaX Page To What
+Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>
+*/
+
 package service
 
 import "github.com/gin-gonic/gin"

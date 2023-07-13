@@ -1,7 +1,7 @@
 /*
 主命令
 
-BetaX Page to what
+BetaX Page To What
 Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>
 */
 package cmd

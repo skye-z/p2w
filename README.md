@@ -1,12 +1,11 @@
-# Page to What
+# Page To What
 
 ## TODO
 
+* [x] Command
+    * [x] PDF
+    * [x] Image
+    * [x] Server
 * [ ] API
-    * [ ] User
-    * [ ] System
-    * [ ] Template
-    * [ ] Order
-* [ ] Page
-    * [ ] Auth
-    * [ ] Admin
+    * [ ] PDF
+    * [ ] Image

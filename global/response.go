@@ -1,3 +1,10 @@
+/*
+全局公共响应
+
+BetaX Page To What
+Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>
+*/
+
 package global
 
 import (
