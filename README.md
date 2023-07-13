@@ -6,6 +6,12 @@ P2W is a web page converted to PDF or image tool, provides command and http api
 [![](https://img.shields.io/badge/P2W-1.0.0-green)](control)
 [![CodeQL](https://github.com/skye-z/p2w/workflows/CodeQL/badge.svg)](https://github.com/skye-z/p2w/security/code-scanning)
 
+[![Security Rating](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=security_rating)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
+[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=sqale_rating)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
+[![Reliability Rating](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=reliability_rating)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
+[![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
+[![Bugs](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=bugs)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
+
 ## TODO
 
 * [x] Command
