@@ -26,7 +26,7 @@ P2W is a web page converted to PDF or image tool, provides command and http api
 
 ## Install
 
-If you're using Docker, you'll need to have *Chrome* installed before you can use it.
+If you're not using Docker, you'll need to have *Chrome* installed before you can use it.
 
 ### Executable File
 
