@@ -28,7 +28,7 @@ var pdfConf = new(PDFConfig)
 var pdfCmd = &cobra.Command{
 	Use:   "pdf",
 	Short: "Convert web page to pdf",
-	Long:  "Convert web page to pdf",
+	Long:  "Convert web page to pdf\n\nWarning: path and send cannot be used at the same time",
 	Run: func(cmd *cobra.Command, args []string) {
 		log.Println("Start conversion -> pdf")
 		cache := service.ToPDF(pdfConf.url)
