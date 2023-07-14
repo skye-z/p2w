@@ -35,14 +35,15 @@ var pdfCmd = &cobra.Command{
 
 		code := global.GetCode(pdfConf.code)
 		log.Println("Conversion completed ->", code)
+		name := code + ".pdf"
 
 		if pdfConf.send != "" {
 			log.Println("Start sending ->", pdfConf.send)
-			global.SendFile(pdfConf.send, cache, code)
+			global.SendFile(pdfConf.send, cache, name)
 			log.Println("PDF sent successfully")
 		} else {
-			log.Println("Start saving ->", pdfConf.path+"/"+code+".pdf")
-			if err := os.WriteFile(code+".pdf", cache, 0o644); err != nil {
+			log.Println("Start saving ->", pdfConf.path+"/"+name)
+			if err := os.WriteFile(name, cache, 0o644); err != nil {
 				log.Fatalln("PDF saving failed:", err)
 			} else {
 				log.Println("PDF saved successfully")

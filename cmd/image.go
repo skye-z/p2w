@@ -42,14 +42,15 @@ var imageCmd = &cobra.Command{
 
 		code := global.GetCode(pdfConf.code)
 		log.Println("Conversion completed ->", code)
+		name := code + ".png"
 
 		if imgConf.send != "" {
 			log.Println("Start sending ->", imgConf.send)
-			global.SendFile(imgConf.send, cache, code)
+			global.SendFile(imgConf.send, cache, name)
 			log.Println("Image sent successfully")
 		} else {
-			log.Println("Start saving ->", imgConf.path+"/"+code+".png")
-			if err := os.WriteFile(code+".png", cache, 0o644); err != nil {
+			log.Println("Start saving ->", imgConf.path+"/"+name)
+			if err := os.WriteFile(name, cache, 0o644); err != nil {
 				log.Fatalln("Image saving failed:", err)
 			} else {
 				log.Println("Image saved successfully")

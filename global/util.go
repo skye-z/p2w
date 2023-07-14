@@ -1,7 +1,10 @@
 package global
 
 import (
+	"bytes"
 	"fmt"
+	"mime/multipart"
+	"net/http"
 	"strconv"
 	"time"
 )
@@ -22,6 +25,26 @@ func ToInt(num string) int {
 }
 
 // 发送文件
-func SendFile(path string, data []byte, code string) {
-
+func SendFile(path string, data []byte, name string) bool {
+	buf := new(bytes.Buffer)
+	writer := multipart.NewWriter(buf)
+	part, err := writer.CreateFormFile(name, name)
+	if err != nil {
+		return false
+	}
+	part.Write(data)
+	if err = writer.Close(); err != nil {
+		return false
+	}
+	req, err := http.NewRequest(http.MethodPost, path, buf)
+	if err != nil {
+		return false
+	}
+	req.Header.Add("Content-Type", writer.FormDataContentType())
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return false
+	}
+	defer resp.Body.Close()
+	return true
 }
