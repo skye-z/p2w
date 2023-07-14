@@ -1,8 +1,8 @@
 # P2W - Page To What
 
-[中文](README_zh.md)
+[English](README.md)
 
-P2W is a web page converted to PDF or image tool, provides command and http api
+P2W 是一个网页转PDF或图片的工具, 支持通过命令行和HTTP接口调用
 
 [![](https://img.shields.io/badge/Go-1.20+-%2300ADD8?style=flat&logo=go)](go.work)
 [![](https://img.shields.io/badge/P2W-1.0.0-green)](control)
@@ -14,96 +14,86 @@ P2W is a web page converted to PDF or image tool, provides command and http api
 [![Vulnerabilities](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=vulnerabilities)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
 [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=skye-z_p2w&metric=bugs)](https://sonarcloud.io/summary/new_code?id=skye-z_p2w)
 
-## TODO
+## 安装
 
-* [x] Command
-    * [x] PDF
-    * [x] Image
-    * [x] Server
-* [ ] API
-    * [ ] PDF
-    * [ ] Image
+如果你使用Docker, 那么在使用前你需要预先安装*Chrome*浏览器.
 
-## Install
+### 独立执行文件
 
-If you're using Docker, you'll need to have *Chrome* installed before you can use it.
+首先你需要根据操作系统下载P2W的可执行文件.
 
-### Executable File
+如果您使用的是Linux, 请将可执行文件放置在`/usr/local/bin`目录下.
 
-First you need to download the P2W executable file according to your operating system.
-
-If you are using Linux, place the executable in the `/usr/local/bin` directory.
-
-If you are using Windows, place the executable in any directory in the `PATH` environment variable.
+如果您使用的是Windows, 请将可执行文件放置在环境变量`PATH`中任意目录下.
 
 ### Docker
 
-> Docker image not yet released
+> 镜像暂未发布
 
 ```shell
 docker run -d -p 12800:12800 --name p2w skye-z/p2w
 ```
 
-## Use
+## 使用
 
-### Use from the command line
+### 通过命令行使用
 
-P2W provides `pdf` and `image` commands.
+P2W提供 `pdf` 和 `image` 两个命令
 
-* Public Flags
-    * --url/-u: URL to be converted.
-    * --path/-p: output path after conversion (default `. /`)
-    * --code/-c: the code that identifies the conversion task
-    * ---send/-s: the address to send the converted file to.
-* `image` Dedicated Flags
-    * --element/-e: intercept element
-    * --quality/-q: image quality (default 90)
+* 公共 Flags
+    * --url/-u: 待转换的网址
+    * --path/-p: 转换后输出路径(默认 `./`)
+    * --code/-c: 转换任务标识代码
+    * --send/-s: 转换后发送地址
+* `image` 专用 Flags
+    * --element/-e: 截取元素
+    * --quality/-q: 图片质量(默认90)
 
-> Note that `path` and `send` can only be used interchangeably, with the `send` tag taking precedence.
+> 请注意, `path` 与 `send` 只能二选一, 优先 `send` 标签
 
 ```shell
-# Export PDF to current path
+# 输出PDF到当前路径
 p2w pdf -u="https://github.com" -p="./"
-# Send PDF to specified address
+# 发送PDF到指定地址
 p2w pdf -u="https://github.com" -c="github" -s="http://localhost:8080/test"
 
-# Output full page image to current path
+# 输出完整页面图片到当前路径
 p2w image -u="https://github.com" -p="./" -q="90"
-# Send the full page image to the specified address
+# 发送完整页面图片到指定地址
 p2w image -u="https://github.com" -q="90" -c="github" -s="http://localhost:8080/test"
 
-# Outputs an image of the specified element to the current path
+# 输出指定元素图片到当前路径
 p2w image -u="https://github.com" -p="./" -q="90" -e=".application-main"
-# Sends an image of a specified element to a specified address
+# 发送指定元素图片到指定地址
 p2w image -u="https://github.com" -q="90" -e=".application-main" -c="github" -s="http://localhost:8080/test"
 ```
 
-### Used through the HTTP interface
+### 通过HTTP接口使用
 
-P2W provides two `GET` interfaces, `/api/pdf` and `/api/img`.
+P2W提供 `/api/pdf` 和 `/api/img` 两个 `GET` 接口
 
-* public parameters
-    * url: the url to be converted
-    * code: the code of the conversion task
-    * send: the address to send the converted file to
-* `image` special parameters
-    * element: the element to be captured
-    * quality: quality of the image (default 90)
+* 公共参数
+    * url: 待转换的网址
+    * code: 转换任务标识代码
+    * send: 转换后发送地址
+* `image` 专用参数
+    * element: 截取元素
+    * quality: 图片质量(默认90)
 
-Please note that you need to start the HTTP server with the command line command `server` to access it.
+请注意, 需要使用命令行命令 `server` 启动HTTP服务器才可访问
 
 ``` shell
 p2w server -p="12800"
 ```
 
-## Packaging and compilation
+## 打包编译
 
-### Compile the executable
+### 编译可执行程序
 
 ```shell
 go mod download
 go mod tidy
-# Packaging for the current platform
+# 为当前平台打包
 go build -o p2w -ldflags '-s -w'
 
 # MacOS
@@ -114,11 +104,11 @@ CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o p2w -ldflags '-s -w'
 CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o p2w -ldflags '-s -w'
 ```
 
-### Packaging Docker images
+### 打包 Docker 镜像
 
 ```shell
-# Compile the Linux version first
+# 先编译Linux版本
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o p2w -ldflags '-s -w'
-# Then build the image in the directory
+# 然后在目录下构建镜像
 docker build -t skye-z/p2w:1.0.0 .
 ```
