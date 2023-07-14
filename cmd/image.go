@@ -45,7 +45,7 @@ var imageCmd = &cobra.Command{
 
 		if imgConf.send != "" {
 			log.Println("Start sending ->", imgConf.send)
-			// http post send
+			global.SendFile(imgConf.send, cache, code)
 			log.Println("Image sent successfully")
 		} else {
 			log.Println("Start saving ->", imgConf.path+"/"+code+".png")

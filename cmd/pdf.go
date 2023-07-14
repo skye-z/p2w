@@ -38,7 +38,7 @@ var pdfCmd = &cobra.Command{
 
 		if pdfConf.send != "" {
 			log.Println("Start sending ->", pdfConf.send)
-			// http post send
+			global.SendFile(pdfConf.send, cache, code)
 			log.Println("PDF sent successfully")
 		} else {
 			log.Println("Start saving ->", pdfConf.path+"/"+code+".pdf")
