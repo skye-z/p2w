@@ -26,7 +26,7 @@ func (http HTTP) ApiToPDF(ctx *gin.Context) {
 	cache := ToPDF(url)
 	// 发送接口(填了就不放回PDF而是直接发送)
 	send := ctx.Query("send")
-	if len(url) == 0 {
+	if len(send) == 0 {
 		global.ReturnFile(ctx, "application/pdf", cache)
 	} else {
 		// 标识码
@@ -48,14 +48,14 @@ func (http HTTP) ApiToImage(ctx *gin.Context) {
 	// 图片质量
 	quality := ctx.Query("quality")
 	var cache []byte
-	if len(url) == 0 {
+	if len(element) == 0 {
 		cache = ToFullImage(url, global.ToInt(quality, 90))
 	} else {
 		cache = ToElementImage(url, element)
 	}
 	// 发送接口(填了就不放回PDF而是直接发送)
 	send := ctx.Query("send")
-	if len(url) == 0 {
+	if len(send) == 0 {
 		global.ReturnFile(ctx, "image/png", cache)
 	} else {
 		// 标识码
