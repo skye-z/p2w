@@ -19,8 +19,11 @@ func GetCode(code string) string {
 }
 
 // 忽略了错误信息,没有测试前不要用这个函数
-func ToInt(num string) int {
-	number, _ := strconv.Atoi(num)
+func ToInt(num string, default_ int) int {
+	number, err := strconv.Atoi(num)
+	if err != nil {
+		return default_
+	}
 	return number
 }
 
