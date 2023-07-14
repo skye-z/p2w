@@ -37,3 +37,9 @@ func ReturnSuccess(ctx *gin.Context, obj any) {
 	ctx.JSON(200, obj)
 	ctx.Abort()
 }
+
+func ReturnFile(ctx *gin.Context, type_ string, data []byte) {
+	ctx.Header("Content-Type", type_)
+	ctx.Writer.Write(data)
+	ctx.Abort()
+}
