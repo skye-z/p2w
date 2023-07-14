@@ -7,11 +7,10 @@ Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>
 package cmd
 
 import (
-	"fmt"
 	"log"
 	"os"
+	"p2w/global"
 	"p2w/service"
-	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -41,12 +40,7 @@ var imageCmd = &cobra.Command{
 			cache = service.ToFullImage(imgConf.url, imgConf.quality)
 		}
 
-		var code string
-		if imgConf.code == "" {
-			code = fmt.Sprint(time.Now().Unix())
-		} else {
-			code = imgConf.code
-		}
+		code := global.GetCode(pdfConf.code)
 		log.Println("Conversion completed ->", code)
 
 		if imgConf.send != "" {

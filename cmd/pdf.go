@@ -7,11 +7,10 @@ Copyright © 2023 SkyeZhang <skai-zhang@hotmail.com>
 package cmd
 
 import (
-	"fmt"
 	"log"
 	"os"
+	"p2w/global"
 	"p2w/service"
-	"time"
 
 	"github.com/spf13/cobra"
 )
@@ -34,12 +33,7 @@ var pdfCmd = &cobra.Command{
 		log.Println("Start conversion -> pdf")
 		cache := service.ToPDF(pdfConf.url)
 
-		var code string
-		if pdfConf.code == "" {
-			code = fmt.Sprint(time.Now().Unix())
-		} else {
-			code = pdfConf.code
-		}
+		code := global.GetCode(pdfConf.code)
 		log.Println("Conversion completed ->", code)
 
 		if pdfConf.send != "" {
