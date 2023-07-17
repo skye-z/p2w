@@ -28,15 +28,16 @@ var serverCmd = &cobra.Command{
 	Short: "HTTP server",
 	Long:  "HTTP server",
 	Run: func(cmd *cobra.Command, args []string) {
+		const portTag = "server.port"
 		// 初始化配置
 		global.InitConfig()
 		// 关闭调试
 		gin.SetMode(gin.ReleaseMode)
 		// 判断端口号是否可用
 		if serConf.port == 0 {
-			serConf.port = global.GetInt("server.port")
-		} else if serConf.port != global.GetInt("server.port") {
-			global.Set("server.port", serConf.port)
+			serConf.port = global.GetInt(portTag)
+		} else if serConf.port != global.GetInt(portTag) {
+			global.Set(portTag, serConf.port)
 		}
 		// 加载路由
 		log.Println("HTTP server startup in progress ->", serConf.port)
