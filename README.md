@@ -20,9 +20,9 @@ P2W is a web page converted to PDF or image tool, provides command and http api
     * [x] PDF
     * [x] Image
     * [x] Server
-* [ ] API
-    * [ ] PDF
-    * [ ] Image
+* [x] API
+    * [x] PDF
+    * [x] Image
 
 ## Install
 
