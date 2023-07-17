@@ -1,6 +1,13 @@
 FROM alpine:3.18.2
 MAINTAINER skye-z <skai-zhang@hotmail.com>
 
+# 创建运行用户
+RUN addgroup -S nonroot \
+    && adduser -S betax -G nonroot
+
+# 切换用户,不要使用root!!!
+USER betax
+
 # 如需在中国大陆地区构建清取消下方注释
 # RUN set -eux && sed -i 's/dl-cdn.alpinelinux.org/mirrors.ustc.edu.cn/g' /etc/apk/repositories
 
