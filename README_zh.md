@@ -28,10 +28,8 @@ P2W 是一个网页转PDF或图片的工具, 支持通过命令行和HTTP接口�
 
 ### Docker
 
-> 镜像暂未发布, 请使用项目下的`Dockerfile`自行打包
-
 ```shell
-docker run -d -p 12800:12800 --name p2w skye-z/p2w
+docker run -d -p 12800:12800 --name p2w ghcr.io/skye-z/p2w:latest
 ```
 
 ## 使用

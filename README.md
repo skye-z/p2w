@@ -38,11 +38,8 @@ If you are using Windows, place the executable in any directory in the `PATH` en
 
 ### Docker
 
-> Docker image not yet released, 
-> Please use the `Dockerfile` under the project to package it yourself.
-
 ```shell
-docker run -d -p 12800:12800 --name p2w skye-z/p2w
+docker run -d -p 12800:12800 --name p2w ghcr.io/skye-z/p2w:latest
 ```
 
 ## Use
