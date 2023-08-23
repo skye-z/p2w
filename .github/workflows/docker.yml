@@ -6,7 +6,6 @@ on:
     tags: [ 'v*.*.*' ]
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     permissions:
@@ -42,7 +41,7 @@ jobs:
       uses: docker/metadata-action@98669ae865ea3cffbcbaa878cf57c20bbf1c6c38
       with:
         images: |
-            skay98/${{ github.repository }}
+            skay98/p2w
             ghcr.io/${{ github.repository }}
     # 设置 Go 环境
     - name: Setup Go
