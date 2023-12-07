@@ -39,7 +39,7 @@ If you are using Windows, place the executable in any directory in the `PATH` en
 ### Docker
 
 ```shell
-docker run -d -p 12800:12800 --name p2w ghcr.io/skye-z/p2w:latest
+docker run -d -p 12800:12800 --name p2w skyezhang/p2w
 ```
 
 ## Use
@@ -118,5 +118,5 @@ CGO_ENABLED=0 GOOS=windows GOARCH=amd64 go build -o p2w -ldflags '-s -w'
 # Compile the Linux version first
 CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o p2w -ldflags '-s -w'
 # Then build the image in the directory
-docker build -t skye-z/p2w:1.0.0 .
+docker build -t skyezhang/p2w:1.0.0 .
 ```
